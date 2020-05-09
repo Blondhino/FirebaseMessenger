@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/darkGreyBackground"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:weightSum="100">
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="12"
+        >
+        <ImageButton
+            android:id="@+id/fileButton"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/file_ico"
+
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:padding="5dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="78"
+        >
+        <EditText
+            android:id="@+id/messageInput"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your message here..."
+            android:textColorHint="@color/disabledButtonGrey"
+            android:textColor="@color/whiteTextColor"
+            android:scrollbars="vertical"
+            android:background="@drawable/rounded_edit_text"
+            /> </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="1dp"
+        android:layout_weight="10">
+        <ImageButton
+            android:id="@+id/sendMessageButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_send"
+            android:scaleX="1.2"
+            android:scaleY="1.2"
+            android:background="#00000000"/>
+    </RelativeLayout>
+
+</LinearLayout>
+</RelativeLayout>

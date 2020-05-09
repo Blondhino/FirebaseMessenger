@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#576574</color>
+    <color name="colorAccent">#0ABDE3</color>
+    <color name="statusBarGrey">#576574</color>
+    <color name="whiteTextColor">#E5E5E5</color>
+    <color name="darkGreyBackground">#222F3E</color>
+    <color name="optionsBacground">#2A2B36</color>
+    <color name="optionsBacgroundDarkOverlay">#19000000</color>
+    <color name="disabledButtonGrey">#576574</color>
+    <color name="dialogBackground">#C8D6E5</color>
+</resources>

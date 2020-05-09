@@ -1,0 +1,48 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_above="@id/foother"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/statusBarGrey"
+        app:layout_scrollFlags="scroll|enterAlways">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/toolbar_image"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:padding="1dp"
+                android:src="@drawable/placeholder" />
+            <TextView
+                android:id="@+id/toolbar_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Nick Name"
+                android:textColor="@color/whiteTextColor"
+                android:fontFamily="sans-serif-light"
+                android:textSize="22sp"
+                android:layout_toRightOf="@id/backArrow"
+                />
+
+            <ImageView
+                android:id="@+id/backArrow"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/back"
+                android:layout_alignParentStart="true"
+                android:layout_marginRight="10dp"
+                />
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

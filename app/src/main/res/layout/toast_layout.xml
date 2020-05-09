@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/toastUpload"
+    android:visibility="invisible"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+
+    android:background="#00FFFFFF">
+<RelativeLayout
+    android:id="@+id/toastHolder"
+    android:padding="10dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_toast"
+    >
+    <TextView
+        android:id="@+id/toast_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Uploading your image in proggress..."/>
+    <ProgressBar
+        android:id="@+id/toast_proggresBar"
+        android:layout_marginTop="5dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/toast_message"
+        />
+</RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:id="@+id/layoutMask"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="1dp"
+        android:background="#7A000000">
+    </RelativeLayout>
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="100"
+        tools:context=".ui.Activities.MainActivity">
+
+        <include layout="@layout/login_signup_header"
+            android:layout_weight="25"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"/>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/loginSignupViewPager"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:overScrollMode="never"
+            android:layout_height="0dp"
+            android:layout_weight="43"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7">
+            <Button
+                android:id="@+id/loginSignupButton"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:text="Sign Up"
+                android:fontFamily="sans-serif"
+                android:textAllCaps="false"/>
+        </RelativeLayout>
+
+        <include
+            layout="@layout/login_signup_foother"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="25"/>
+
+
+    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/loginSignupProgressBar"
+        android:visibility="invisible"
+        android:elevation="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+/>
+
+</RelativeLayout>
+

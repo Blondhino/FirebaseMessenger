@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/optionsBacground"
+
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:background="@color/optionsBacgroundDarkOverlay"
+            android:layout_height="match_parent"
+            android:layout_weight="13">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                >
+                <ImageButton
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/gifButton"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:scaleY="0.8"
+                    android:scaleX="0.8"
+                    android:background="@drawable/gif_ico"
+                    android:scaleType="centerInside"
+                    />
+                <ImageButton
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/pictureButton"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:scaleY="0.8"
+                    android:scaleX="0.8"
+                    android:background="@drawable/file_ico"
+                    android:layout_marginTop="50sp"
+                    android:layout_below="@id/gifButton"
+                    android:scaleType="centerInside"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="87">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/gifRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/searchText"
+                android:layout_margin="5dp"
+                android:overScrollMode="never"
+                />
+            <EditText
+                android:id="@+id/searchText"
+                android:layout_margin="5sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/rounded_edit_text"
+                android:textColorHint="@color/disabledButtonGrey"
+                android:textColor="@color/whiteTextColor"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:hint="Search for GIFs"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

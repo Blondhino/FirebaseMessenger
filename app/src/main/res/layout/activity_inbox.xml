@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/inboxMainLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/darkGreyBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.Activities.InboxActivity">
+    <include layout="@layout/inbox_header" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:id="@+id/inbox_toolbar" />
+    <LinearLayout
+        android:id="@+id/inboxHolderLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/inbox_toolbar"
+        android:orientation="vertical"
+        android:weightSum="100">
+
+        <RelativeLayout
+            android:id="@+id/inboxMessagesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/inbox_messages_recycler_view"
+                android:padding="5dp"
+                android:layout_above="@id/foother"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <include android:id="@+id/foother" layout="@layout/inbox_foother"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+
+
+    <include
+        layout="@layout/options_inbox"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="48"
+        />
+
+    </LinearLayout>
+
+</RelativeLayout>
