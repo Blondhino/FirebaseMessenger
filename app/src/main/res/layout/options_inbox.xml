@@ -30,51 +30,44 @@
                     android:background="@drawable/gif_ico"
                     android:scaleType="centerInside"
                     />
+
                 <ImageButton
-                    android:layout_centerHorizontal="true"
                     android:id="@+id/pictureButton"
                     android:layout_width="30sp"
                     android:layout_height="30sp"
-                    android:scaleY="0.8"
-                    android:scaleX="0.8"
-                    android:background="@drawable/file_ico"
-                    android:layout_marginTop="50sp"
                     android:layout_below="@id/gifButton"
+                    android:layout_marginTop="52dp"
+                    android:background="@drawable/image_file"
                     android:scaleType="centerInside"
-                    />
+                    android:scaleX="0.8"
+                    android:scaleY="0.8" />
             </RelativeLayout>
 
         </RelativeLayout>
+<RelativeLayout
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="87">
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="87">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/gifRecycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@id/searchText"
-                android:layout_margin="5dp"
-                android:overScrollMode="never"
-                />
-            <EditText
-                android:id="@+id/searchText"
-                android:layout_margin="5sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="@drawable/rounded_edit_text"
-                android:textColorHint="@color/disabledButtonGrey"
-                android:textColor="@color/whiteTextColor"
-                android:paddingBottom="8dp"
-                android:paddingTop="8dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:hint="Search for GIFs"
-                />
 
-        </RelativeLayout>
+    <include
+        android:id="@+id/options_gif_holder"
+        android:visibility="invisible"
+        layout="@layout/options_gifs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="87"
+        />
+    <include
+        android:id="@+id/options_pictures_holder"
+        android:visibility="visible"
+        layout="@layout/options_pictures"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="87"
+        />
+
+</RelativeLayout>
 
     </LinearLayout>
 

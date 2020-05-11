@@ -7,15 +7,34 @@ import com.blondi.firebasemessenger.models.Message
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import android.graphics.Rect
+import android.view.View
 import android.widget.LinearLayout
 import com.blondi.firebasemessenger.Network.GiphyAPI
 import com.blondi.firebasemessenger.common.MESSAGE_TYPE_GIF_MESSAGE
+import com.blondi.firebasemessenger.common.OPTIONS_BUTTON_GIF
+import com.blondi.firebasemessenger.common.OPTIONS_BUTTON_PICTURE
 import com.blondi.firebasemessenger.models.networkModels.ListOfGifs
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import android.provider.MediaStore
+import com.blondi.firebasemessenger.utils.FirebaseMessengerApp
+import android.Manifest.permission
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import com.blondi.firebasemessenger.ui.Activities.MainActivity
+import androidx.core.app.ActivityCompat
+import android.content.pm.PackageManager
+import androidx.core.content.ContextCompat
+import com.facebook.FacebookSdk.getApplicationContext
+import java.util.jar.Manifest
+import android.provider.MediaStore.MediaColumns
+import android.app.Activity
+import android.database.Cursor
+import android.net.Uri
+import com.blondi.firebasemessenger.ui.Activities.InboxActivity
 
 
 class InboxPresenter(context :Context, view: View) {
@@ -29,6 +48,7 @@ class InboxPresenter(context :Context, view: View) {
     var isFileChoserVisible = false
     var isKeyboardUp = false
     var userImageUri :String =""
+    var currentVisibleOptions = OPTIONS_BUTTON_PICTURE
     lateinit var retrofit : Retrofit
     lateinit var  call :Call<ListOfGifs>
     lateinit var colapsingView: android.view.View
@@ -392,6 +412,40 @@ class InboxPresenter(context :Context, view: View) {
         Log.d("OnGifClicked","userId: $userId  recipientId: $recipientUid inboxId: $inboxId message : ${gifUrlList[position]}")
     }
 
+    fun gisRecyclerScrolling(dy: Int) {
+
+       if(dy > 0){
+            Log.d("OnGifScroll","UP")
+           view.animate(false)
+        }
+        if(dy < 0){Log.d("OnGifScroll","DOWN")
+            view.animate(false)
+        }
+    }
+
+    fun gifRecyclerStateChanged(state: Int) {
+        if(state == 0){Log.d("OnGifScroll","STOPPED")
+            view.animate(true)
+        }
+    }
+
+    fun optionsButtonClicked(optionsButton: String) {
+        if(optionsButton== OPTIONS_BUTTON_PICTURE && currentVisibleOptions== OPTIONS_BUTTON_GIF){
+            view.picturesOptionsSetVisibility(true)
+            view.gifOPtionsSetVisibility(false)
+            currentVisibleOptions= OPTIONS_BUTTON_PICTURE
+            }
+        if(optionsButton== OPTIONS_BUTTON_GIF && currentVisibleOptions== OPTIONS_BUTTON_PICTURE)
+        {
+            view.picturesOptionsSetVisibility(false)
+            view.gifOPtionsSetVisibility(true)
+            currentVisibleOptions= OPTIONS_BUTTON_GIF
+        }
+
+        }
+
+
+
 
     interface View{
         fun fillAdapterWith(messages :MutableList<Message>)
@@ -400,5 +454,8 @@ class InboxPresenter(context :Context, view: View) {
         fun colapseOptionsMenu()
         fun colapseKeyboard()
         fun isInputMesageEditTextFocused(): Boolean
+        fun animate(show: Boolean)
+        fun gifOPtionsSetVisibility(visibile : Boolean)
+        fun picturesOptionsSetVisibility(visibile : Boolean)
     }
 }

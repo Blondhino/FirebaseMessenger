@@ -1,0 +1,30 @@
+<RelativeLayout android:id="@+id/recyclerHolder"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="87"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/gifRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/searchText"
+        android:layout_margin="5dp"
+        android:overScrollMode="never"
+        />
+    <EditText
+        android:id="@+id/searchText"
+        android:layout_margin="5sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/rounded_edit_text"
+        android:textColorHint="@color/disabledButtonGrey"
+        android:textColor="@color/whiteTextColor"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:hint="Search for GIFs"
+        />
+
+</RelativeLayout>

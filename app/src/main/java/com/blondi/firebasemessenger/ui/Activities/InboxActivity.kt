@@ -1,5 +1,6 @@
 package com.blondi.firebasemessenger.ui.Activities
 
+import android.animation.ValueAnimator
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,15 +24,17 @@ import kotlinx.android.synthetic.main.inbox_foother.*
 import kotlinx.android.synthetic.main.inbox_header.*
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
+import androidx.core.animation.doOnEnd
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.blondi.firebasemessenger.ui.adapters.GifRecyclerAdapter
-import kotlinx.android.synthetic.main.fragment_notifications.*
+import kotlinx.android.synthetic.main.options_gifs.*
 import kotlinx.android.synthetic.main.options_inbox.*
 
 
 class InboxActivity : AppCompatActivity(), InboxPresenter.View, GifRecyclerAdapter.OnGifClickListener {
     lateinit var senderID: String
+    var iscolapsed = false
     lateinit var recipientID: String
     lateinit var recipientImgUrl: String
     lateinit var recipientNickname: String
@@ -60,6 +63,7 @@ class InboxActivity : AppCompatActivity(), InboxPresenter.View, GifRecyclerAdapt
         setUpListeners()
         setUpEditText()
         setUpToolbarValues()
+        presenter.loadPicturesFromGallery()
         setupRecyclers()
     }
 
@@ -70,6 +74,8 @@ class InboxActivity : AppCompatActivity(), InboxPresenter.View, GifRecyclerAdapt
         fileButton.setOnClickListener {
             presenter.fileButtonClicked(inboxMessagesLayout, inboxHolderLayout)
         }
+        gifButton.setOnClickListener{presenter.optionsButtonClicked(OPTIONS_BUTTON_GIF)}
+        pictureButton.setOnClickListener{presenter.optionsButtonClicked(OPTIONS_BUTTON_PICTURE)}
         messageInput.onFocusChangeListener =
             View.OnFocusChangeListener { view, hasFocus ->
                 Log.d(
@@ -122,13 +128,20 @@ class InboxActivity : AppCompatActivity(), InboxPresenter.View, GifRecyclerAdapt
             recyclerAdapter = inboxMessagesAdapter()
             adapter = recyclerAdapter
         }
-
         gifRecycler.apply {
             layoutManager = GridLayoutManager(FirebaseMessengerApp.getAppContext(), 2)
             gifAdapter = GifRecyclerAdapter()
             adapter = gifAdapter
 
-        }
+        }.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                presenter.gisRecyclerScrolling(dy)
+            }
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                presenter.gifRecyclerStateChanged(newState)
+            }
+        })
+
     }
 
     private fun setImage() {
@@ -223,5 +236,52 @@ class InboxActivity : AppCompatActivity(), InboxPresenter.View, GifRecyclerAdapt
     override fun onGifClick(position: Int) {
         presenter.onGifClicked(position)
     }
+
+    override fun animate(show: Boolean) {
+
+        val view: View = searchText
+        if(!show && !iscolapsed){
+           // view.animate().translationY(recyclerHolder.height.toFloat()-gifRecycler.height.toFloat()).setDuration(200).start()
+            val anim = ValueAnimator.ofInt(view.measuredHeight,0)
+            anim.addUpdateListener { valueAnimator ->
+                val value = valueAnimator.animatedValue as Int
+                val layoutParams = view.getLayoutParams()
+                layoutParams.height = value
+                view.setLayoutParams(layoutParams)
+            }
+            anim.duration = 200
+            anim.start()
+            iscolapsed=true
+        }
+        if(show && iscolapsed){
+            val anim = ValueAnimator.ofInt(view.measuredHeight,131)
+            anim.addUpdateListener { valueAnimator ->
+                val value = valueAnimator.animatedValue as Int
+                val layoutParams = view.getLayoutParams()
+                layoutParams.height = value
+                view.setLayoutParams(layoutParams)
+            }
+            anim.duration = 200
+            anim.startDelay=500
+            anim.start()
+            iscolapsed=true
+            iscolapsed=false
+            Log.d("animateView","Should Be Shown now")
+        }
+    }
+
+    override fun gifOPtionsSetVisibility(visibile: Boolean) {
+        if(visibile){
+            options_gif_holder.visibility=View.VISIBLE
+        }else {options_gif_holder.visibility=View.GONE}
+    }
+
+    override fun picturesOptionsSetVisibility(visibile: Boolean) {
+        if(visibile){
+            options_pictures_holder.visibility=View.VISIBLE
+        }else {options_pictures_holder.visibility=View.GONE}
+    }
+
+
 }
 

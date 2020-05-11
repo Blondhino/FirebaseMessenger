@@ -1,0 +1,12 @@
+<RelativeLayout android:id="@+id/recyclerHolder"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="87"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/picturesRecycler"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    />
+</RelativeLayout>
